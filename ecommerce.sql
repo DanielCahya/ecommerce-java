@@ -27,9 +27,9 @@ CREATE TABLE users (
 
 -- Insert sample users (including admin)
 INSERT INTO users (name, email, password, role) VALUES
-('John Doe', 'john@example.com', 'password123', 'user'),
-('Jane Smith', 'jane@example.com', 'pass456', 'user'),
-('admin', 'admin@example.com', 'admin123', 'admin');
+('John Doe', 'john@example.com', '$2y$12$ID9ORd1PppinEIXwBmPfnuWpGKzrZt7tKNz8QlfoLILPvugMS1UkS', 'user'),
+('Jane Smith', 'jane@example.com', '$2y$12$xOd69RZRYtDTt/.45iJt5eBvrSx2xVthQ62irR/JH7Av/7naYC812', 'user'),
+('admin', 'admin@example.com', '$2y$12$uDdgJZIiQz4tq5GN3UeogeSlVzElySb27/I0UIVQsQSiu2Y1Zr3ZO', 'admin');
 
 -- Insert sample products
 INSERT INTO products (name, description, price, stock, category) VALUES

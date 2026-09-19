@@ -1,7 +1,7 @@
 <?php
 
-// define('API_BASE_URL', 'http://localhost:4567/api');
-define('API_BASE_URL', 'http://192.168.1.3:4567/api');
+// define('API_BASE_URL', 'http://192.168.1.3:4567/api');
+define('API_BASE_URL', getenv('API_BASE_URL') ?: 'http://localhost:8080/api');
 define('API_TIMEOUT', 30);
 
 // Session configuration
