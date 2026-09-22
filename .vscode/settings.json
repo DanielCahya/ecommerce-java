@@ -1,5 +1,7 @@
 {
     "workbench.editor.autoLockGroups": {
         "workbench.editor.chatSession": true
-    }
+    },
+    "scm.alwaysShowActions": true,
+    "scm.alwaysShowRepositories": true
 }
