@@ -28,20 +28,20 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    public ProductDTO getProductById(Long id) {
+    public ProductDTO getProductById(Integer id) {
         Optional<Product> productOpt = productRepository.findById(id);
         return productOpt.map(this::applyRules).orElse(null);
     }
 
     public ProductDTO applyRules(Product product) {
         ProductDTO dto = new ProductDTO();
-        dto.setId(product.getId());
+        dto.setId(product.getId() != null ? product.getId().longValue() : null);
         dto.setName(product.getName());
         dto.setDescription(product.getDescription());
-        dto.setPrice(product.getPrice());
+        dto.setPrice(product.getPrice() != null ? BigDecimal.valueOf(product.getPrice()) : BigDecimal.ZERO);
         dto.setStock(product.getStock());
         dto.setCategory(product.getCategory());
-        dto.setImage(product.getImage());
+        dto.setImage(null);
 
         dto.setAlert(checkStockAlert(product));
         dto.setAuthRequired(checkAuthRequired(product));
@@ -60,7 +60,7 @@ public class ProductService {
     }
 
     private boolean checkAuthRequired(Product product) {
-        return product.getPrice() != null && product.getPrice().compareTo(new BigDecimal("1000000")) > 0;
+        return product.getPrice() != null && product.getPrice() > 1_000_000D;
     }
 
     private String detectPromo(Product product) {
@@ -149,7 +149,7 @@ public class ProductService {
 
     private ProductDTO.DisplayPrice calculateDisplayPrice(Product product, String promo) {
         ProductDTO.DisplayPrice dp = new ProductDTO.DisplayPrice();
-        BigDecimal originalPrice = product.getPrice() != null ? product.getPrice() : BigDecimal.ZERO;
+        BigDecimal originalPrice = product.getPrice() != null ? BigDecimal.valueOf(product.getPrice()) : BigDecimal.ZERO;
         dp.setOriginal(originalPrice);
 
         if (promo == null) {
