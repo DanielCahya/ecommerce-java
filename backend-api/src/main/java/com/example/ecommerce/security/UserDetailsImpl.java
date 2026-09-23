@@ -64,6 +64,15 @@ public class UserDetailsImpl implements UserDetails {
         return username;
     }
 
+    public String getRole() {
+        return authorities.stream()
+                .map(org.springframework.security.core.GrantedAuthority::getAuthority)
+                .filter(authority -> authority.startsWith("ROLE_"))
+                .map(authority -> authority.substring("ROLE_".length()))
+                .findFirst()
+                .orElse(null);
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
