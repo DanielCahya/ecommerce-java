@@ -1,6 +1,6 @@
 package com.example.ecommerce.controller;
 
-import com.example.ecommerce.dto.JwtResponse;
+
 import com.example.ecommerce.dto.LoginRequest;
 import com.example.ecommerce.security.JwtUtils;
 import com.example.ecommerce.security.UserDetailsImpl;
@@ -35,10 +35,7 @@ public class AuthController {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-        JwtResponse jwtResponse = new JwtResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getRole());
+
 
         // The PHP frontend expects { success: true, data: { token: '...', user: {...} } }
         // Let's match exactly what the frontend ApiClient expects.
