@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     
     $client = new ApiClient();
-    $response = $client->post('login', [
+    $response = $client->post('auth/login', [
         'username' => $username,
         'password' => $password
     ]);

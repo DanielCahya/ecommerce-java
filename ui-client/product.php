@@ -1,7 +1,6 @@
 <?php
 require_once 'config/config.php';
 require_once 'api/ProductService.php';
-require_once 'services/ImplicitProductRules.php';
 
 $productId = $_GET['id'] ?? 0;
 
@@ -18,8 +17,8 @@ if (!$response['success'] || empty($response['data'])) {
     exit;
 }
 
-// Apply implicit rules
-$product = ImplicitProductRules::applyRules($response['data']);
+// Use product data directly from API
+$product = $response['data'];
 $pageTitle = htmlspecialchars($product['name']);
 
 include 'views/header.php';

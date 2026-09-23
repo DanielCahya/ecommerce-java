@@ -1,7 +1,6 @@
 <?php
 require_once 'config/config.php';
 require_once 'api/ProductService.php';
-require_once 'services/ImplicitProductRules.php';
 
 $pageTitle = 'Daftar Produk';
 $productService = new ProductService();
@@ -23,8 +22,7 @@ $products = [];
 $shouldForceRefresh = false;
 
 if ($response['success'] && !empty($response['data'])) {
-    // Apply implicit rules to all products
-    $products = ImplicitProductRules::applyRulesToList($response['data']);
+    $products = $response['data'];
     
     // Check if any product requires force refresh
     foreach ($products as $product) {
